@@ -1,4 +1,9 @@
 #!/bin/bash
+#_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+#
+# Amazon Web Services Command Samples
+#
+#_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 
 #
 # Amazon Elastic Compute Cloud (EC2)
@@ -28,9 +33,29 @@ function run_instance() {
                      --group ${SECURITY_GROUP}
 }
 
+function stop_instance() {
+    ec2-stop-instances ${INSTANCE}
+    ec2-detach-volume ${VOLUME}
+}
+
+function start_instance() {
+    ec2-start-instances ${INSTANCE}
+    ec2-attach-volume ${VOLUME} -i ${INSTANCE} -d ${DEV}
+    ec2-associate-address ${EIP} -i ${INSTANCE}
+}
+
+function create_image() {
+    ec2-create-image ${INSTANCE} -n ${APP_SERVER} -d ${DESC}
+}
+
 #
-# AWS EBS
+# AWS Elastic Block Store (EBS)
 #
+
+#sudo apt-get install xfsprogs
+#sudo mkdir -p /var/www
+#sudo mkfs.xfs /dev/sdf
+#mount -t xfs 0o defaults /dev/sdf /var/www
 
 #
 # AWS Identity and Access Management (IAM)
