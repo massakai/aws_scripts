@@ -4,6 +4,17 @@ export EC2_HOME=/opt/aws/apitools/ec2
 export AWS_RDS_HOME=/opt/aws/apitools/rds
 export PATH="$EC2_HOME/bin:$AWS_RDS_HOME/bin:$PATH"
 
+# FIXME
 export EC2_KEY_DIR=/home/ec2-user/.ec2
 export EC2_PRIVATE_KEY=${EC2_KEY_DIR}/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
 export EC2_CERT=${EC2_KEY_DIR}/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+
+export EC2_CONF_DIR=/home/ec2-user/conf/aws
+export AWS_CREDENTIAL_FILE=${EC2_CONF_DIR}/aws_credential.conf
+
+# Generate directories
+mkdir -p ${EC2_KEY_DIR}
+mkdir -p ${EC2_CONF_DIR}
+
+# Generate symbolic links
+echo `pwd`
